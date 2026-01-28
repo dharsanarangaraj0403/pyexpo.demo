@@ -1,39 +1,80 @@
 import streamlit as st
 
 # Page config
-st.set_page_config(page_title="My Portfolio", page_icon="🌟")
+st.set_page_config(
+    page_title="INNO_CORES Portfolio",
+    page_icon="🌟",
+    layout="centered"
+)
 
 # Sidebar
-st.sidebar.title("Navigation")
-menu = st.sidebar.radio("Go to", ["Home", "About", "Projects", "Contact"])
+st.sidebar.title("🚀 Navigation")
+menu = st.sidebar.radio(
+    "Go to",
+    ["🏠 Home", "🙋 About", "🛠 Projects", "📞 Contact"]
+)
 
-# Home
-if menu == "Home":
-    st.title("👩‍💻INNO_CORES")
+# ---------------- HOME ----------------
+if menu == "🏠 Home":
+    st.title("👩‍💻 INNO_CORES")
     st.subheader("Aspiring Full Stack Developer")
-    st.write("Welcome to my Streamlit portfolio!")
+    st.write(
+        """
+        Welcome to my **personal portfolio app** built using **Streamlit** 🚀  
+        Here you can know about me, my projects, and contact me easily.
+        """
+    )
 
-# About
-elif menu == "About":
+    st.info("💡 Built with Python & Streamlit")
+
+# ---------------- ABOUT ----------------
+elif menu == "🙋 About":
     st.header("📌 About Me")
-    st.write("""
-    - Beginner Full Stack Developer  
-    - Learning Python, C, Streamlit  
-    - Interested in Web & App Development  
-    """)
 
-# Projects
-elif menu == "Projects":
-    st.header("🛠 Projects")
-    st.write("🔹 Student Feedback System")
-    st.write("🔹 Travel Content App")
-    st.write("🔹 GitHub Portfolio Website")
+    col1, col2 = st.columns(2)
 
-# Contact
-elif menu == "Contact":
+    with col1:
+        st.write("""
+        - 🎓 Student & Beginner Full Stack Developer  
+        - 🐍 Learning Python, C, Streamlit  
+        - 🌐 Interested in Web & App Development  
+        """)
+
+    with col2:
+        st.write("""
+        **Skills**
+        - Python  
+        - C Programming  
+        - Streamlit  
+        - Basics of Git & GitHub  
+        """)
+
+# ---------------- PROJECTS ----------------
+elif menu == "🛠 Projects":
+    st.header("🛠 My Projects")
+
+    st.markdown("### 🔹 Student Feedback System")
+    st.write("A system to collect and analyze student feedback digitally.")
+
+    st.markdown("### 🔹 Travel Content App")
+    st.write("An app that displays travel places and content interactively.")
+
+    st.markdown("### 🔹 GitHub Portfolio Website")
+    st.write("A personal portfolio hosted using GitHub.")
+
+# ---------------- CONTACT ----------------
+elif menu == "📞 Contact":
     st.header("📞 Contact Me")
-    email = st.text_input("Enter your email")
-    msg = st.text_area("Your message")
 
-    if st.button("Send"):
-        st.success("Message sent successfully")
+    with st.form("contact_form"):
+        name = st.text_input("Your Name")
+        email = st.text_input("Your Email")
+        msg = st.text_area("Your Message")
+
+        submit = st.form_submit_button("Send Message")
+
+        if submit:
+            if name and email and msg:
+                st.success("✅ Message sent successfully!")
+            else:
+                st.warning("⚠ Please fill all the fields.")
