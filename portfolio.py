@@ -36,4 +36,4 @@ elif menu == "Contact":
     msg = st.text_area("Your message")
 
     if st.button("Send"):
-        st.success("Message sent successfully ✅")
+        st.success("Message sent successfully")
